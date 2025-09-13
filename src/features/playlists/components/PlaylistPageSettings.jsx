@@ -4,17 +4,23 @@ import { BsThreeDots } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { useTheme } from "../../../context/ThemeContext";
 import PlaylistEditMenu from "./PlaylistEditMenu";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function PlaylistPageSettings({ playlist }) {
   const { togglePopMenu } = useTheme();
+  const { user } = useAuth();
 
   return (
     <div className="playlistPageSettings">
       <FaPlay className="playPauseBtn" />
       <FaShuffle />
-      <FiEdit onClick={togglePopMenu} />
+      {user?.id === playlist.owner_id && (
+        <>
+          <FiEdit onClick={togglePopMenu} />
+          <PlaylistEditMenu playlist={playlist} />
+        </>
+      )}
       <BsThreeDots />
-      <PlaylistEditMenu playlist={playlist} />
     </div>
   );
 }
