@@ -1,7 +1,28 @@
 import axios from "./axios";
 
-export const fetchPlaylists = async () => {
-  const res = await axios.get("/playlists");
+export const fetchPlaylists = async ({ userId, page, limit }) => {
+  const params = [];
+
+  if (userId) params.push(`userId=${userId}`);
+  if (page) params.push(`page=${page}`);
+  if (limit) params.push(`limit=${limit}`);
+
+  const res = await axios.get(
+    `/playlists${params.length > 0 ? "?" + params.join("&") : ""}`
+  );
+
+  return res.data;
+};
+
+export const fetchAlbums = async ({ page, limit }) => {
+  const params = [];
+
+  if (page) params.push(`page=${page}`);
+  if (limit) params.push(`limit=${limit}`);
+
+  const res = await axios.get(
+    `/albums${params.length > 0 ? "?" + params.join("&") : ""}`
+  );
 
   return res.data;
 };
@@ -23,7 +44,6 @@ export const updateUser = async (userId, body) => {
 
   return response.data;
 };
-
 
 export const fetchArtistAlbums = async (artistId) => {
   const response = await axios.get("/artists/" + artistId + "/albums");

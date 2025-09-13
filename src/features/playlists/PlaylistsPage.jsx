@@ -6,8 +6,10 @@ import { fetchPlaylists } from "../../api/api";
 import { usePlaylist } from "../../context/PlaylistContext";
 import PlaylistsHeader from "./components/PlaylistsHeader";
 import CreatePlaylistButton from "./components/CreatePlaylistButton";
+import { useAuth } from "../../context/AuthContext";
 
 export default function PlaylistsPage() {
+  const { user } = useAuth();
   const {
     data: playlists,
     error,
@@ -15,7 +17,7 @@ export default function PlaylistsPage() {
     isPending,
   } = useQuery({
     queryKey: ["playlists"],
-    queryFn: fetchPlaylists,
+    queryFn: () => fetchPlaylists({ userId: user.id }),
   });
   const { search } = usePlaylist();
 
@@ -31,8 +33,8 @@ export default function PlaylistsPage() {
 
   return (
     <div className="playlistsContainer">
-      <PlaylistsHeader/>
-      <CreatePlaylistButton/>
+      <PlaylistsHeader />
+      <CreatePlaylistButton />
       <div className="playlistCards">
         {filtered.map((playlist) => {
           return <PlaylistCard key={playlist.id} playlist={playlist} />;
