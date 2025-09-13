@@ -1,0 +1,32 @@
+.artistCards,
+.songCards,
+.albumCards {
+  display: flex;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.albumCards {
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.songCards {
+  flex-direction: column;
+  gap: 5px;
+}
+
+.artistCards {
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .artistCards,
+  .songCards,
+  .albumCards {
+    width: 100%;
+  }
+}

@@ -1,0 +1,113 @@
+.playlistsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.playlistsHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlistHeadingInfo {
+  display: flex;
+}
+
+.createPlaylistBtn {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none;
+  background-color: rgb(50, 156, 17);
+  color: var(--text-color);
+  border-radius: 5px;
+  width: 160px;
+}
+
+.playlistsQueryWrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.playlistsQueryButton:hover {
+  cursor: pointer;
+}
+
+.playlistsQuery {
+  margin-left: 10px;
+}
+
+.playlistsQuery input {
+  padding: 10px;
+  padding-left: 20px;
+  background-color: var(--bg-secondary);
+  border: none;
+  color: var(--text-color);
+  border-radius: 25px;
+  border: 1px solid var(--primary-color);
+}
+
+.playlistsQueryButton {
+  transition: opacity 0.2s, transform 0.2s;
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background-color: var(--bg-color);
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  margin-left: 5px;
+}
+.playlistsQueryButton.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.playlistsQuery {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateY(-10px) scale(0.98);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.playlistsQuery.shown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.playlistCards {
+  display: flex;
+  flex-direction: column;
+}
+
+#createPlaylistMenu .popup-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+  text-align: center;
+}
+
+#createPlaylistMenu .popup-content form input {
+  padding: 10px;
+  background-color: var(--bg-secondary);
+  border: none;
+  color: var(--text-color);
+  border-radius: 20px;
+}
+
+#createPlaylistMenu .popup-content form button {
+  padding: 10px;
+  background-color: var(--bg-accent);
+  border: none;
+  border-radius: 20px;
+}
