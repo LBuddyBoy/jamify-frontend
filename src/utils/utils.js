@@ -37,3 +37,10 @@ export function match(name, search) {
 
   return name.toLowerCase().startsWith(search.toLowerCase());
 }
+
+export function capitalizeFirstLetter(str) {
+  if (str.length === 0) {
+    return ""; // Handle empty strings
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

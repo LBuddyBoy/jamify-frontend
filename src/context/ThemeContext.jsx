@@ -1,4 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
+import { useLocation } from "react-router";
+import { capitalizeFirstLetter } from "../utils/utils";
 
 const ThemeContext = createContext();
 
@@ -8,11 +10,19 @@ export function ThemeProvider({ children }) {
   );
   const [popMenu, setPopMenu] = useState(false);
   const [sliderOpen, setSliderOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const routes =
+      pathname === "/" ? ["Home"] : pathname.split("/").splice(1, 2);
+
+    document.title = "Jamify • " + routes.map(capitalizeFirstLetter).join(" ");
+  });
 
   function handleSliderToggle() {
     setSliderOpen((m) => !m);
@@ -40,7 +50,7 @@ export function ThemeProvider({ children }) {
     togglePopMenu,
     handleSliderToggle,
     closeSlider,
-    sliderOpen
+    sliderOpen,
   };
 
   return (

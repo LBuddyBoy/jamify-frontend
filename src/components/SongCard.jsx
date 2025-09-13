@@ -42,8 +42,13 @@ export default function SongCard({ song, showListens = false }) {
           <h3>{song.title}</h3>
         </div>
         {showListens && <p>{song.listens}</p>}
-        <p className="songCardDuration">{secondsToMMSS(song.duration)}</p>
-        <RxDotsHorizontal className="songCardEdit" onClick={handleRightClick} />
+        <div className="songCardControls">
+          <p className="songCardDuration">{secondsToMMSS(song.duration)}</p>
+          <RxDotsHorizontal
+            className="songCardEdit"
+            onClick={handleRightClick}
+          />
+        </div>
       </div>
       {isInteracting && (
         <SongMenu x={currentlyInteracting.x} y={currentlyInteracting.y} />

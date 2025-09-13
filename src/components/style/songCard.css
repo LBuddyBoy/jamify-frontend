@@ -50,6 +50,12 @@
   text-align: right;
 }
 
+.songCardControls {
+  display: flex;
+  align-items: center;
+  gap: 1.5ch;
+}
+
 @media (max-width: 768px) {
   .songCard {
     padding: 8px 12px;

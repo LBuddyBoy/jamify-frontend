@@ -4,6 +4,7 @@ import axios from "../../api/axios";
 import ArtistSongs from "./components/ArtistSongs";
 import ArtistAlbums from "./components/ArtistAlbums";
 import "./style/artistPage.css";
+import useTitle from "../../hooks/useTitle";
 
 export default function ArtistPage() {
   const { id } = useParams();
@@ -18,6 +19,8 @@ export default function ArtistPage() {
       return (await axios.get("/artists/" + id)).data;
     },
   });
+
+  useTitle(artist ? artist.name : "Loading...");
 
   if (isPending || !artist) {
     return <span>Loading…</span>;

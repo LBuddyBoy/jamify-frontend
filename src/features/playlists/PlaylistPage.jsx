@@ -5,6 +5,7 @@ import SongCard from "../../components/SongCard";
 import "./style/playlistPage.css";
 import PlaylistPageHeader from "./components/PlaylistPageHeader";
 import PlaylistPageSettings from "./components/PlaylistPageSettings";
+import useTitle from "../../hooks/useTitle";
 
 export default function PlaylistPage() {
   const { id } = useParams();
@@ -19,6 +20,8 @@ export default function PlaylistPage() {
       return (await axios.get("/playlists/" + id)).data;
     },
   });
+
+  useTitle(playlist ? playlist.name : "Loading...");
 
   if (isPending || !playlist) {
     return <span>Loading…</span>;
